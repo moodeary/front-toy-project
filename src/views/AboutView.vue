@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1 @click="saveToDo">This is an about page</h1>
+    <h1 @click="saveToDo">This is an about pagee</h1>
   </div>
 </template>
 
