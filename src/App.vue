@@ -106,13 +106,11 @@ const menuList = [
 
 <style scoped>
 .mini-state-true {
-  width: calc(100vw - 200px);
-  height: calc(100vh - 50px);
+  width: calc(100vw - 75px);
   display: flex;
 }
 .mini-state-false {
-  width: calc(100vw - 75px);
-  height: calc(100vh - 50px);
+  width: calc(100vw - 200px);
   display: flex;
 }
 </style>
