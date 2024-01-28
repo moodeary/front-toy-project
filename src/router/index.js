@@ -9,28 +9,23 @@ const router = createRouter({
       component: () => import('@/views/main/homeView.vue')
     },
     {
-      path: '/inbox',
-      name: 'inbox',
-      component: () => import('@/views/main/inboxView.vue')
+      path: '/Outbox',
+      name: 'Outbox',
+      component: () => import('@/views/main/outboxView.vue')
     },
     {
-      path: '/send',
-      name: 'send',
-      component: () => import('@/views/main/sendView.vue')
+      path: '/Trash',
+      name: 'Trash',
+      component: () => import('@/views/main/trashView.vue')
     },
     {
-      path: '/delete',
-      name: 'delete',
-      component: () => import('@/views/main/deleteView.vue')
+      path: '/Spam',
+      name: 'Spam',
+      component: () => import('@/views/main/spamView.vue')
     },
     {
-      path: '/error',
-      name: 'error',
-      component: () => import('@/views/main/errorView.vue')
-    },
-    {
-      path: '/settings',
-      name: 'settings',
+      path: '/Settings',
+      name: 'Settings',
       component: () => import('@/views/main/settingsView.vue')
     },
     {
@@ -39,8 +34,8 @@ const router = createRouter({
       component: () => import('@/views/main/feedbackView.vue')
     },
     {
-      path: '/help',
-      name: 'help',
+      path: '/Help',
+      name: 'Help',
       component: () => import('@/views/main/helpView.vue')
     }
   ]

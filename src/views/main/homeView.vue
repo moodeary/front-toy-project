@@ -1,16 +1,14 @@
 <template>
-  <div class="body">
-    <div class="main">
-      <div class="q-pa-md q-gutter-sm">
-        <q-btn glossy color="dark" icon="mail" label="메세지 생성" @click="saveToDo" />
-        <q-btn glossy color="dark" icon="mail" label="회원가입 버튼" @click="createMember" />
-        <q-btn glossy color="dark" icon="mail" label="로그인 버튼" @click="loginMember" />
-      </div>
-      <div class="q-pa-md q-gutter-sm count">{{ counter.count }}</div>
-      <div class="q-pa-md q-gutter-sm count">
-        <q-btn glossy color="dark" label="-" @click="counter.decrement" />
-        <q-btn glossy color="dark" label="+" @click="counter.increment" />
-      </div>
+  <div class="main">
+    <div class="q-pa-md q-gutter-sm">
+      <q-btn glossy color="dark" icon="mail" label="메세지 생성" @click="saveToDo" />
+      <q-btn glossy color="dark" icon="mail" label="회원가입 버튼" @click="createMember" />
+      <q-btn glossy color="dark" icon="mail" label="로그인 버튼" @click="loginMember" />
+    </div>
+    <div class="q-pa-md q-gutter-sm count">{{ counter.count }}</div>
+    <div class="q-pa-md q-gutter-sm count">
+      <q-btn glossy color="dark" label="-" @click="counter.decrement" />
+      <q-btn glossy color="dark" label="+" @click="counter.increment" />
     </div>
   </div>
 </template>
@@ -59,12 +57,6 @@ const loginMember = async () => {
 }
 </script>
 <style scoped>
-.main {
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-}
-
 .count {
   margin: auto;
   font-weight: bold;
@@ -73,11 +65,5 @@ const loginMember = async () => {
 .count button {
   margin: 0 10px;
   width: 70px;
-}
-
-.body {
-  width: calc(100vw - 57px);
-  height: calc(100vh - 50px);
-  display: flex;
 }
 </style>

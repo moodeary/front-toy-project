@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <h1>deleteView</h1>
+  <div class="main">
+    <div>
+      <h1>deleteView</h1>
+    </div>
   </div>
 </template>
 

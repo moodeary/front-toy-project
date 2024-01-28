@@ -31,3 +31,9 @@ a,
     padding: 0 2rem;
   } */
 }
+
+.main {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}

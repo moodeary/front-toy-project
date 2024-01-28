@@ -21,9 +21,9 @@
         <q-list>
           <template v-for="(menuItem, index) in menuList" :key="index">
             <q-item
-              @click="clickLabel(menuItem.icon)"
+              @click="clickLabel(menuItem.label)"
               clickable
-              :active="menuItem.icon === selected"
+              :active="menuItem.label === selected"
               v-ripple
             >
               <q-item-section avatar>
@@ -40,7 +40,9 @@
     </q-drawer>
 
     <q-page-container>
-      <RouterView />
+      <div :class="miniState ? 'mini-state-true' : 'mini-state-false'">
+        <RouterView />
+      </div>
     </q-page-container>
   </q-layout>
 </template>
@@ -52,49 +54,65 @@ import { RouterView, useRouter } from 'vue-router'
 const router = useRouter()
 const drawer = ref(true)
 const miniState = ref(true)
+const selected = ref('')
+
 const clickLabel = (menuItem) => {
   selected.value = menuItem
-  router.push(`/${menuItem}`)
+  if (menuItem == 'home') {
+    router.push(`/`)
+  } else {
+    router.push(`/${menuItem}`)
+  }
 }
-
-const selected = ref('')
 
 const menuList = [
   {
     icon: 'inbox',
-    label: 'Inbox',
+    label: 'home',
     separator: true
   },
   {
     icon: 'send',
-    label: 'Outbox',
+    label: 'outbox',
     separator: false
   },
   {
     icon: 'delete',
-    label: 'Trash',
+    label: 'trash',
     separator: false
   },
   {
     icon: 'error',
-    label: 'Spam',
+    label: 'spam',
     separator: true
   },
   {
     icon: 'settings',
-    label: 'Settings',
+    label: 'settings',
     separator: false
   },
   {
     icon: 'feedback',
-    label: 'Send Feedback',
+    label: 'feedback',
     separator: false
   },
   {
     icon: 'help',
-    iconColor: 'primary',
-    label: 'Help',
+    label: 'help',
     separator: false
   }
 ]
 </script>
+
+<style scoped>
+.mini-state-true {
+  width: calc(100vw - 200px);
+  height: calc(100vh - 50px);
+  display: flex;
+}
+.mini-state-false {
+  width: calc(100vw - 75px);
+  height: calc(100vh - 50px);
+  display: flex;
+}
+</style>

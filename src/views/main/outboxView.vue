@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <h1>inboxView</h1>
+  <div class="main">
+    <div>
+      <h1>sendView</h1>
+    </div>
   </div>
 </template>
 

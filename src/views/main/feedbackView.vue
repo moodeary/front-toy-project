@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <h1>feedbackView</h1>
+  <div class="main">
+    <div>
+      <h1>feedbackView</h1>
+    </div>
   </div>
 </template>
 
-<script>
-export default {}
-</script>
+<script setup></script>
 
-<style></style>
+<style scoped></style>
