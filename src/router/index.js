@@ -6,12 +6,42 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('@/views/HomeView.vue')
+      component: () => import('@/views/main/homeView.vue')
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import('@/views/AboutView.vue')
+      path: '/inbox',
+      name: 'inbox',
+      component: () => import('@/views/main/inboxView.vue')
+    },
+    {
+      path: '/send',
+      name: 'send',
+      component: () => import('@/views/main/sendView.vue')
+    },
+    {
+      path: '/delete',
+      name: 'delete',
+      component: () => import('@/views/main/deleteView.vue')
+    },
+    {
+      path: '/error',
+      name: 'error',
+      component: () => import('@/views/main/errorView.vue')
+    },
+    {
+      path: '/settings',
+      name: 'settings',
+      component: () => import('@/views/main/settingsView.vue')
+    },
+    {
+      path: '/feedback',
+      name: 'feedback',
+      component: () => import('@/views/main/feedbackView.vue')
+    },
+    {
+      path: '/help',
+      name: 'help',
+      component: () => import('@/views/main/helpView.vue')
     }
   ]
 })
