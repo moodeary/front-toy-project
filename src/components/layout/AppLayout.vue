@@ -1,7 +1,7 @@
 <template>
   <q-header reveal class="bg-dark text-white" height-hint="75">
     <q-toolbar>
-      <q-toolbar-title style="cursor"> Choonsik's home </q-toolbar-title>
+      <q-toolbar-title style="cursor">Choonsik's home</q-toolbar-title>
     </q-toolbar>
   </q-header>
 
@@ -23,6 +23,7 @@
             @click="clickLabel(menuItem.path)"
             clickable
             :active="menuItem.path === selected"
+            active-class="my-menu-link"
             v-ripple
           >
             <q-item-section avatar>
@@ -46,24 +47,33 @@
 
 <script setup>
 import axios from 'axios'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 import { useRouter, RouterView } from 'vue-router'
 
 const router = useRouter()
 const miniState = ref(true)
 const drawer = ref(true)
-const selected = ref('')
+const selected = ref('home')
 const menuList = ref([])
 
 onMounted(() => {
   getTabs()
 })
 
+const Path = computed(() => {
+  const urlPath = window.location.pathname
+  if (urlPath === '/') {
+    return 'home'
+  }
+  return urlPath.slice(1)
+})
+
+selected.value = Path.value
+
 const getTabs = async () => {
   try {
     const res = await axios.get('/api/v1/tab/get')
     menuList.value = menuList.value.concat(res.data)
-    console.log(menuList.value)
   } catch (err) {
     console.error(err)
   }
@@ -71,11 +81,7 @@ const getTabs = async () => {
 
 const clickLabel = (path) => {
   selected.value = path
-  if (path == 'home') {
-    router.push(`/`)
-  } else {
-    router.push(`/${path}`)
-  }
+  router.push(`/${path}`)
 }
 </script>
 
@@ -87,5 +93,10 @@ const clickLabel = (path) => {
 .mini-state-false {
   width: calc(100vw - 200px);
   display: flex;
+}
+
+.my-menu-link {
+  color: white;
+  background: #f2c037;
 }
 </style>
