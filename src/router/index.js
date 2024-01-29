@@ -9,34 +9,34 @@ const router = createRouter({
       component: () => import('@/views/main/homeView.vue')
     },
     {
-      path: '/Outbox',
-      name: 'Outbox',
-      component: () => import('@/views/main/outboxView.vue')
+      path: '/medication',
+      name: 'medicationView',
+      component: () => import('@/views/main/medicationView.vue')
     },
     {
-      path: '/Trash',
-      name: 'Trash',
-      component: () => import('@/views/main/trashView.vue')
+      path: '/vitamins',
+      name: 'vitamins',
+      component: () => import('@/views/main/vitaminsView.vue')
     },
     {
-      path: '/Spam',
-      name: 'Spam',
-      component: () => import('@/views/main/spamView.vue')
+      path: '/hospital',
+      name: 'hospital',
+      component: () => import('@/views/main/hospitalView.vue')
     },
     {
-      path: '/Settings',
-      name: 'Settings',
+      path: '/symptom',
+      name: 'symptom',
+      component: () => import('@/views/main/symptomView.vue')
+    },
+    {
+      path: '/summary',
+      name: 'summary',
+      component: () => import('@/views/main/summaryView.vue')
+    },
+    {
+      path: '/settings',
+      name: 'settings',
       component: () => import('@/views/main/settingsView.vue')
-    },
-    {
-      path: '/feedback',
-      name: 'feedback',
-      component: () => import('@/views/main/feedbackView.vue')
-    },
-    {
-      path: '/Help',
-      name: 'Help',
-      component: () => import('@/views/main/helpView.vue')
     }
   ]
 })

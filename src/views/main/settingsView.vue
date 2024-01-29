@@ -1,13 +1,12 @@
 <template>
   <div class="q-px-lg q-py-md bg-grey-9 text-white">
-    <q-timeline dark color="secondary">
-      <q-timeline-entry heading>복용중인 보조제</q-timeline-entry>
+    <q-timeline :layout="layout" color="secondary">
+      <q-timeline-entry heading>
+        설정
+        <br />
+      </q-timeline-entry>
 
-      <q-timeline-entry
-        title="Event Title"
-        subtitle="February 22, 1986"
-        avatar="https://cdn.quasar.dev/img/avatar5.jpg"
-      >
+      <q-timeline-entry title="Event Title" subtitle="February 22, 1986" side="left">
         <div>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -18,7 +17,7 @@
         </div>
       </q-timeline-entry>
 
-      <q-timeline-entry title="Event Title" subtitle="February 21, 1986" icon="delete">
+      <q-timeline-entry title="Event Title" subtitle="February 21, 1986" side="right" icon="delete">
         <div>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -31,7 +30,7 @@
 
       <q-timeline-entry heading>November, 2017</q-timeline-entry>
 
-      <q-timeline-entry title="Event Title" subtitle="February 22, 1986">
+      <q-timeline-entry title="Event Title" subtitle="February 22, 1986" side="left">
         <div>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -42,7 +41,7 @@
         </div>
       </q-timeline-entry>
 
-      <q-timeline-entry title="Event Title" subtitle="February 22, 1986">
+      <q-timeline-entry title="Event Title" subtitle="February 22, 1986" side="right">
         <div>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -56,6 +55,7 @@
       <q-timeline-entry
         title="Event Title"
         subtitle="February 22, 1986"
+        side="left"
         color="orange"
         icon="done_all"
       >
@@ -69,7 +69,7 @@
         </div>
       </q-timeline-entry>
 
-      <q-timeline-entry title="Event Title" subtitle="February 22, 1986">
+      <q-timeline-entry title="Event Title" subtitle="February 22, 1986" side="right">
         <div>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -80,7 +80,7 @@
         </div>
       </q-timeline-entry>
 
-      <q-timeline-entry title="Event Title" subtitle="February 22, 1986">
+      <q-timeline-entry title="Event Title" subtitle="February 22, 1986" side="left">
         <div>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -93,9 +93,12 @@
     </q-timeline>
   </div>
 </template>
+<script setup>
+import { useQuasar } from 'quasar'
+import { computed } from 'vue'
 
-<script>
-export default {}
+const $q = useQuasar()
+const layout = computed(() => {
+  return $q.screen.lt.sm ? 'dense' : $q.screen.lt.md ? 'comfortable' : 'loose'
+})
 </script>
-
-<style></style>

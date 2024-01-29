@@ -2,7 +2,7 @@
   <div class="q-px-lg q-py-md bg-grey-9 text-white">
     <q-timeline :layout="layout" color="secondary">
       <q-timeline-entry heading>
-        전체 통합 일지
+        비타민 정보
         <br />
       </q-timeline-entry>
 
