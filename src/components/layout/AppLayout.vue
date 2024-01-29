@@ -11,13 +11,17 @@
     :mini="miniState"
     @mouseover="miniState = false"
     @mouseout="miniState = true"
-    :width="200"
+    :width="250"
     :breakpoint="500"
     bordered
     :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
   >
     <q-scroll-area class="fit">
       <q-list>
+        <div :class="miniState ? 'mini-title-true' : 'mini-title-false'">
+          <div>HAIDE</div>
+        </div>
+        <q-separator style="margin: 10px" />
         <template v-for="(menuItem, index) in menuList" :key="index">
           <q-item
             @click="clickLabel(menuItem.path)"
@@ -91,12 +95,35 @@ const clickLabel = (path) => {
   display: flex;
 }
 .mini-state-false {
-  width: calc(100vw - 200px);
+  width: calc(100vw - 270px);
   display: flex;
 }
 
 .my-menu-link {
   color: white;
   background: #f2c037;
+}
+
+.mini-title-true,
+.mini-title-false {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.mini-title-true {
+  font-weight: bold;
+  color: gray;
+}
+
+.mini-title-false {
+  color: #f2c037;
+  font-size: 30px;
+}
+
+.mini-title-false div,
+.mini-title-true div {
+  font-weight: bold;
 }
 </style>
