@@ -1,11 +1,66 @@
 <template>
-  <q-toolbar>
-    <q-toolbar-title style="cursor: pointer; margin-left">Choonsik's home</q-toolbar-title>
-  </q-toolbar>
+  <div class="toolbar-box">
+    <q-toolbar class="bg-white text-dark toolbar">
+      <q-btn @click="goHome" flat size="16px" class="toolbar-button" label="Home" />
+      <q-space />
+
+      <q-btn class="tab-custom" label="Account">
+        <q-menu transition-show="jump-down" transition-hide="jump-up">
+          <q-list style="min-width: 100px">
+            <q-item clickable>
+              <q-item-section>회원정보</q-item-section>
+            </q-item>
+            <q-separator />
+            <q-item clickable>
+              <q-item-section>회원정보 변경</q-item-section>
+            </q-item>
+            <q-separator />
+            <q-item clickable>
+              <q-item-section>회원 탈퇴</q-item-section>
+            </q-item>
+          </q-list>
+        </q-menu>
+      </q-btn>
+      <q-btn class="tab-custom" label="Log out" />
+      <q-btn @click="goLogin" class="tab-custom" label="login" />
+    </q-toolbar>
+  </div>
 </template>
 
-<script>
-export default {}
+<script setup>
+import { useRouter } from 'vue-router'
+const router = useRouter()
+
+const goHome = () => {
+  router.push('/home')
+}
+
+const goLogin = () => {
+  router.push('/login')
+}
 </script>
 
-<style></style>
+<style scoped>
+.toolbar-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: solid 1px gray;
+  margin: 10px 0 20px;
+}
+
+.toolbar {
+  width: calc(100% - 40px);
+}
+
+.toolbar-button {
+  font-weight: bold;
+  opacity: 0.5;
+}
+
+.tab-custom {
+  font-weight: bold;
+  opacity: 0.5;
+  font-size: 15px;
+}
+</style>

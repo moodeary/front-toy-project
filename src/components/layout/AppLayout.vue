@@ -1,10 +1,4 @@
 <template>
-  <q-header reveal class="bg-dark text-white" height-hint="75">
-    <q-toolbar>
-      <q-toolbar-title style="cursor">Choonsik's home</q-toolbar-title>
-    </q-toolbar>
-  </q-header>
-
   <q-drawer
     v-model="drawer"
     show-if-above
@@ -42,10 +36,9 @@
       </q-list>
     </q-scroll-area>
   </q-drawer>
-  <q-page-container>
-    <div :class="miniState ? 'mini-state-true' : 'mini-state-false'">
-      <RouterView />
-    </div>
+  <q-page-container style="width: 95vw; margin: 0 20px 20px">
+    <ToolbarLayoutVue />
+    <RouterView />
   </q-page-container>
 </template>
 
@@ -53,6 +46,7 @@
 import axios from 'axios'
 import { onMounted, ref, computed } from 'vue'
 import { useRouter, RouterView } from 'vue-router'
+import ToolbarLayoutVue from './ToolbarLayout.vue'
 
 const router = useRouter()
 const miniState = ref(true)
@@ -90,15 +84,6 @@ const clickLabel = (path) => {
 </script>
 
 <style scoped>
-.mini-state-true {
-  width: calc(100vw - 75px);
-  display: flex;
-}
-.mini-state-false {
-  width: calc(100vw - 270px);
-  display: flex;
-}
-
 .my-menu-link {
   color: white;
   background: #f2c037;

@@ -1,5 +1,5 @@
 <template>
-  <div class="q-px-lg q-py-md bg-grey-9 text-white">
+  <div class="q-px-lg q-py-md bg-white text-dark timeline-custom">
     <q-timeline :layout="layout" color="secondary">
       <q-timeline-entry heading>
         병원 기록
@@ -102,3 +102,5 @@ const layout = computed(() => {
   return $q.screen.lt.sm ? 'dense' : $q.screen.lt.md ? 'comfortable' : 'loose'
 })
 </script>
+
+<style scoped></style>

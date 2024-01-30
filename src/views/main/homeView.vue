@@ -1,15 +1,20 @@
 <template>
-  <div class="main">
-    <div class="q-pa-md q-gutter-sm">
-      <q-btn glossy color="dark" icon="mail" label="메세지 생성" @click="saveToDo" />
-      <q-btn glossy color="dark" icon="mail" label="회원가입 버튼" @click="createMember" />
-      <q-btn glossy color="dark" icon="mail" label="로그인 버튼" @click="loginMember" />
+  <div class="box">
+    <div class="main1"></div>
+    <div class="main2">
+      <div>
+        <q-badge class="badge" outline color="dark">기능 버튼</q-badge>
+        <div class="button-list">
+          <q-btn glossy color="dark" icon="mail" label="메세지" @click="saveToDo" />
+          <q-btn glossy color="dark" icon="mail" label="회원가입" @click="createMember" />
+          <q-btn glossy color="dark" icon="mail" label="로그인" @click="loginMember" />
+          <q-btn glossy color="dark" icon="mail" label="메세지" @click="saveToDo" />
+          <q-btn glossy color="dark" icon="mail" label="회원가입" @click="createMember" />
+          <q-btn glossy color="dark" icon="mail" label="로그인" @click="loginMember" />
+        </div>
+      </div>
     </div>
-    <div class="q-pa-md q-gutter-sm count">{{ counter.count }}</div>
-    <div class="q-pa-md q-gutter-sm count">
-      <q-btn glossy color="dark" label="-" @click="counter.decrement" />
-      <q-btn glossy color="dark" label="+" @click="counter.increment" />
-    </div>
+    <div class="main3"></div>
   </div>
 </template>
 
@@ -65,5 +70,48 @@ const loginMember = async () => {
 .count button {
   margin: 0 10px;
   width: 70px;
+}
+
+.box {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.main1 {
+  width: calc(65% - 30px);
+  height: calc(40vh - 50px);
+  margin: 0 10px 10px 20px;
+  border: 1.5px solid lightgray;
+}
+
+.main2 {
+  width: calc(35% - 30px);
+  height: calc(40vh - 50px);
+  margin: 0 20px 10px 10px;
+  border: 1.5px solid lightgray;
+}
+
+.main3 {
+  width: calc(100% - 40px);
+  height: calc(60vh - 80px);
+  margin: 10px 20px 10px 20px;
+  border: 1.5px solid lightgray;
+}
+
+.button-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.button-list button {
+  margin: 5px;
+  width: 25%;
+}
+
+.badge {
+  margin: 15px;
+  height: 30px;
+  font-weight: bold;
 }
 </style>

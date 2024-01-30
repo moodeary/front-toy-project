@@ -37,3 +37,7 @@ a,
   flex-direction: column;
   margin: auto;
 }
+
+.timeline-custom {
+  margin: 10px 20px;
+}
