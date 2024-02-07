@@ -8,9 +8,6 @@
           <q-btn glossy color="dark" icon="mail" label="메세지" @click="saveToDo" />
           <q-btn glossy color="dark" icon="mail" label="회원가입" @click="createMember" />
           <q-btn glossy color="dark" icon="mail" label="로그인" @click="loginMember" />
-          <q-btn glossy color="dark" icon="mail" label="메세지" @click="saveToDo" />
-          <q-btn glossy color="dark" icon="mail" label="회원가입" @click="createMember" />
-          <q-btn glossy color="dark" icon="mail" label="로그인" @click="loginMember" />
         </div>
       </div>
     </div>

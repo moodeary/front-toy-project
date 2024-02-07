@@ -4,15 +4,15 @@
       <q-btn @click="goHome" flat size="16px" class="toolbar-button" label="Home" />
       <q-space />
 
-      <q-btn class="tab-custom" label="Account">
+      <q-btn flat class="tab-custom" label="Account">
         <q-menu transition-show="jump-down" transition-hide="jump-up">
           <q-list style="min-width: 100px">
             <q-item clickable>
-              <q-item-section>회원정보</q-item-section>
+              <q-item-section @click="checkuserBtn">회원 정보</q-item-section>
             </q-item>
             <q-separator />
             <q-item clickable>
-              <q-item-section>회원정보 변경</q-item-section>
+              <q-item-section @click="logoutBtn">로그 아웃</q-item-section>
             </q-item>
             <q-separator />
             <q-item clickable>
@@ -21,15 +21,17 @@
           </q-list>
         </q-menu>
       </q-btn>
-      <q-btn class="tab-custom" label="Log out" />
-      <q-btn @click="goLogin" class="tab-custom" label="login" />
+      <q-btn flat @click="goSignup" class="tab-custom" label="signup" />
+      <q-btn flat @click="goLogin" class="tab-custom" label="login" />
     </q-toolbar>
   </div>
 </template>
 
 <script setup>
 import { useRouter } from 'vue-router'
+import { userStore } from '@/stores/user'
 const router = useRouter()
+const { loginUser, logout } = userStore()
 
 const goHome = () => {
   router.push('/home')
@@ -37,6 +39,22 @@ const goHome = () => {
 
 const goLogin = () => {
   router.push('/login')
+}
+
+const goSignup = () => {
+  router.push('/signup')
+}
+
+const checkuserBtn = () => {
+  if (loginUser()) {
+    console.log('로그인 상태', loginUser())
+  } else {
+    console.log('비 로그인 상태')
+  }
+}
+
+const logoutBtn = () => {
+  logout()
 }
 </script>
 

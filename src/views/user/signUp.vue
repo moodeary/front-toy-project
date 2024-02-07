@@ -18,8 +18,40 @@
           />
         </div>
       </div>
+      <div class="form-box">
+        <div id="name" class="input-tag">
+          <q-badge class="login-badge" color="dark">이름</q-badge>
+          <q-input color="dark" outlined v-model="formData.name" placeholder="name" />
+        </div>
+        <div id="email" class="input-tag">
+          <q-badge class="login-badge" color="dark">이메일</q-badge>
+          <q-input
+            color="dark"
+            outlined
+            type="email"
+            v-model="formData.email"
+            placeholder="email"
+          />
+        </div>
+      </div>
+      <div class="form-box">
+        <div id="phone" class="input-tag">
+          <q-badge class="login-badge" color="dark">전화번호</q-badge>
+          <q-input
+            color="dark"
+            outlined
+            v-model="formData.phone"
+            mask="(###) #### - ####"
+            placeholder=" phone-nunber"
+          />
+        </div>
+        <div id="birthDay" class="input-tag">
+          <q-badge class="login-badge" color="dark">생년원일</q-badge>
+          <q-input color="dark" outlined type="date" v-model="formData.birthDay" />
+        </div>
+      </div>
       <div class="submit-btn">
-        <q-btn label="로그인" type="submit" color="dark" />
+        <q-btn label="회원가입" type="submit" color="dark" />
       </div>
     </q-form>
   </div>
@@ -28,31 +60,24 @@
 <script setup>
 import axios from 'axios'
 import { ref } from 'vue'
-import { userStore } from '@/stores/user'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-const { user, setUser, loginUser } = userStore()
-
-console.log(user)
 
 const formData = ref({
   loginId: 'choonsik',
-  password: 'qweqwe123!'
+  password: 'qweqwe123!',
+  name: '황병수',
+  email: 'moodeary@gmail.com',
+  phone: '010-7177-0677',
+  birthDay: '1991-02-27'
 })
 
 const onSubmit = async () => {
   console.log(formData.value)
   try {
-    const res = await axios.post('/api/v1/member/login', formData.value)
+    const res = await axios.post('/api/v1/member/signUp', formData.value)
     console.log('로그인', res)
-    setUser(res.data)
-    if (loginUser()) {
-      console.log('로그인 되었습니다.')
-      router.push('/home')
-    } else {
-      console.log('로그인이 되지 않았습니다.')
-    }
   } catch (err) {
     console.error(err)
   }
@@ -83,6 +108,14 @@ const onSubmit = async () => {
 
 .input-tag {
   margin: 0 10px;
+}
+
+#name {
+  width: calc(50% - 20px);
+}
+
+#email {
+  width: calc(50% - 20px);
 }
 
 #phone,

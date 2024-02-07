@@ -16,7 +16,7 @@
           <div>HAIDE</div>
         </div>
         <q-separator style="margin: 10px" />
-        <template v-for="(menuItem, index) in menuList" :key="index">
+        <template v-for="(menuItem, index) in sideList.columns" :key="index">
           <q-item
             @click="clickLabel(menuItem.path)"
             clickable
@@ -46,17 +46,13 @@
 import axios from 'axios'
 import { onMounted, ref, computed } from 'vue'
 import { useRouter, RouterView } from 'vue-router'
-import ToolbarLayoutVue from './ToolbarLayout.vue'
+import sideList from '@/assets/sideList'
+import ToolbarLayoutVue from '@/components/layout/toolbarLayout.vue'
 
 const router = useRouter()
 const miniState = ref(true)
 const drawer = ref(true)
 const selected = ref('home')
-const menuList = ref([])
-
-onMounted(() => {
-  getTabs()
-})
 
 const Path = computed(() => {
   const urlPath = window.location.pathname
@@ -67,15 +63,6 @@ const Path = computed(() => {
 })
 
 selected.value = Path.value
-
-const getTabs = async () => {
-  try {
-    const res = await axios.get('/api/v1/tab/get')
-    menuList.value = menuList.value.concat(res.data)
-  } catch (err) {
-    console.error(err)
-  }
-}
 
 const clickLabel = (path) => {
   selected.value = path
