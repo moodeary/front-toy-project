@@ -65,19 +65,18 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const formData = ref({
-  loginId: 'choonsik',
-  password: 'qweqwe123!',
-  name: '황병수',
-  email: 'moodeary@gmail.com',
-  phone: '010-7177-0677',
-  birthDay: '1991-02-27'
+  loginId: '',
+  password: '',
+  name: '',
+  email: '',
+  phone: '',
+  birthDay: ''
 })
 
 const onSubmit = async () => {
-  console.log(formData.value)
   try {
     const res = await axios.post('/api/v1/member/signUp', formData.value)
-    console.log('로그인', res)
+    console.log('회원가입 성공')
   } catch (err) {
     console.error(err)
   }

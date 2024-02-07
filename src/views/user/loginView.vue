@@ -32,22 +32,18 @@ import { userStore } from '@/stores/user'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-const { user, setUser, loginUser } = userStore()
-
-console.log(user)
+const { user, setUser, getisLoggedIn } = userStore()
 
 const formData = ref({
-  loginId: 'choonsik',
-  password: 'qweqwe123!'
+  loginId: '',
+  password: ''
 })
 
 const onSubmit = async () => {
-  console.log(formData.value)
   try {
     const res = await axios.post('/api/v1/member/login', formData.value)
-    console.log('로그인', res)
-    setUser(res.data)
-    if (loginUser()) {
+    await setUser(res.data)
+    if (getisLoggedIn()) {
       console.log('로그인 되었습니다.')
       router.push('/home')
     } else {
