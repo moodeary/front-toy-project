@@ -4,7 +4,15 @@
       <q-btn @click="HomeBtn" flat size="16px" class="toolbar-button" label="Home" />
       <q-space />
 
-      <q-btn flat class="tab-custom" label="Account">
+      <q-btn
+        flat
+        v-show="!getisLoggedIn()"
+        @click="SignupBtn"
+        class="tab-custom"
+        label="회원가입"
+      />
+      <q-btn flat v-show="!getisLoggedIn()" @click="LoginBtn" class="tab-custom" label="로그인" />
+      <q-btn v-show="getisLoggedIn()" flat class="tab-custom" label="계정 정보">
         <q-menu transition-show="jump-down" transition-hide="jump-up">
           <q-list style="min-width: 100px">
             <q-item clickable>
@@ -17,9 +25,7 @@
           </q-list>
         </q-menu>
       </q-btn>
-      <q-btn flat @click="SignupBtn" class="tab-custom" label="signup" />
-      <q-btn flat v-show="!getisLoggedIn()" @click="LoginBtn" class="tab-custom" label="login" />
-      <q-btn flat v-show="getisLoggedIn()" @click="logoutBtn" class="tab-custom" label="logout" />
+      <q-btn flat v-show="getisLoggedIn()" @click="logoutBtn" class="tab-custom" label="로그아웃" />
     </q-toolbar>
   </div>
 </template>
