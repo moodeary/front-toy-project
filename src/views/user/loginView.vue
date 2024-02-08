@@ -40,8 +40,15 @@ const formData = ref({
 })
 
 const onSubmit = async () => {
+  console.log(JSON.stringify(formData.value))
   try {
-    const res = await axios.post('/api/v1/member/login', formData.value)
+    const res = await axios.post('/api/member/login', JSON.stringify(formData.value), {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With'
+      }
+    })
     await setUser(res.data)
     if (getisLoggedIn()) {
       console.log('로그인 되었습니다.')

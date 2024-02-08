@@ -65,7 +65,7 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const formData = ref({
-  loginId: 'answer2',
+  loginId: 'answer221',
   password: 'qweqwe123!',
   name: '황병수',
   email: 'moodeary@gmail.com',
@@ -75,7 +75,13 @@ const formData = ref({
 
 const onSubmit = async () => {
   try {
-    const res = await axios.post('/api/v1/member/signUp', formData.value)
+    const res = await axios.post('/api/member/signUp', JSON.stringify(formData.value), {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With'
+      }
+    })
     await router.push('/login')
   } catch (err) {
     console.error(err)
