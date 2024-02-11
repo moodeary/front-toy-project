@@ -10,11 +10,7 @@
   </div>
 </template>
 
-<script setup>
-import { counterStore } from '@/stores/counter'
-
-const counter = counterStore()
-</script>
+<script setup></script>
 <style scoped>
 .count {
   margin: auto;
