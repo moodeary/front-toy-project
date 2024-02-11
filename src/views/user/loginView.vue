@@ -28,14 +28,17 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import basicAxios from '@/api/index.js'
 import { sessionLogin } from '@/auth/index.js'
+import { userStore } from '@/stores/user'
+const { setUser } = userStore()
+
+import basicAxios from '@/api/index.js'
 
 const router = useRouter()
 
 const formData = ref({
-  username: 'answer2',
-  password: '1234'
+  username: '',
+  password: ''
 })
 
 const onSubmit = async () => {
@@ -46,15 +49,17 @@ const onSubmit = async () => {
   try {
     const res = await basicAxios.post('/login', loginForm)
 
-    const token = res.headers.authorization
-    const parts = token.split('.')
-    const payload = JSON.parse(atob(parts[1]))
-
-    sessionLogin(payload, token)
-
     if (res.headers.authorization) {
-      console.log('로그인 되었습니다.')
+      const token = res.headers.authorization
+      const parts = token.split('.')
+      const payload = JSON.parse(atob(parts[1]))
+
+      sessionLogin(payload, token)
+      setUser(payload)
+
       router.push('/home')
+    } else {
+      console.log('로그인 실패')
     }
   } catch (err) {
     console.error(err)

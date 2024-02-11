@@ -4,12 +4,9 @@
       <q-btn @click="HomeBtn" flat size="16px" class="toolbar-button" label="Home" />
       <q-space />
 
-      <!-- <q-btn flat v-show="!getisLogIn()" @click="SignupBtn" class="tab-custom" label="회원가입" />
+      <q-btn flat v-show="!getisLogIn()" @click="SignupBtn" class="tab-custom" label="회원가입" />
       <q-btn flat v-show="!getisLogIn()" @click="LoginBtn" class="tab-custom" label="로그인" />
-      <q-btn v-show="getisLogIn()" flat class="tab-custom" label="계정 정보"> -->
-      <q-btn flat @click="SignupBtn" class="tab-custom" label="회원가입" />
-      <q-btn flat @click="LoginBtn" class="tab-custom" label="로그인" />
-      <q-btn flat class="tab-custom" label="계정 정보">
+      <q-btn v-show="getisLogIn()" flat class="tab-custom" label="계정 정보">
         <q-menu transition-show="jump-down" transition-hide="jump-up">
           <q-list style="min-width: 100px">
             <q-item clickable>
@@ -22,16 +19,19 @@
           </q-list>
         </q-menu>
       </q-btn>
-      <!-- <q-btn flat v-show="getisLogIn()" @click="logoutBtn" class="tab-custom" label="로그아웃" /> -->
-      <q-btn flat class="tab-custom" label="로그아웃" />
+      <q-btn flat v-show="getisLogIn()" @click="logoutBtn" class="tab-custom" label="로그아웃" />
     </q-toolbar>
   </div>
 </template>
 
 <script setup>
 import { useRouter } from 'vue-router'
-import basicAxios from '@/api/index.js'
+import { userStore } from '@/stores/user'
+import { sessionLogout } from '@/auth/index.js'
 
+const { logout, getisLogIn } = userStore()
+
+import basicAxios from '@/api/index.js'
 const router = useRouter()
 
 const HomeBtn = () => {
@@ -44,6 +44,11 @@ const LoginBtn = () => {
 
 const SignupBtn = () => {
   router.push('/signup')
+}
+
+const logoutBtn = () => {
+  sessionLogout()
+  logout()
 }
 
 const checkuserBtn = async () => {

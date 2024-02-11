@@ -1,4 +1,3 @@
-import { Cookies } from 'quasar'
 import { createRouter, createWebHistory } from 'vue-router'
 import { isLogined } from '@/auth/index.js'
 
@@ -65,8 +64,7 @@ const router = createRouter({
         {
           path: '/signup',
           name: 'signup',
-          component: () => import('@/views/user/signUp.vue'),
-          meta: { unauthorized: true }
+          component: () => import('@/views/user/signUp.vue')
         }
       ]
     }
@@ -81,7 +79,7 @@ router.beforeEach((to, from, next) => {
   // console.log('login_user : ', Cookies.get('login_user'))
   // console.log('token : ', Cookies.get('token'))
 
-  if (to.path === '/login') {
+  if (!to.matched.some((record) => record.meta.unauthorized)) {
     return next()
   }
 
