@@ -3,7 +3,6 @@ import './assets/css/main.css'
 import { createApp } from 'vue'
 import { Quasar } from 'quasar'
 import { createPinia } from 'pinia'
-import { userStore } from '@/stores/user'
 
 // Import icon libraries
 // Import Quasar css

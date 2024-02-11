@@ -5,7 +5,7 @@
       <div class="form-box">
         <div id="id" class="input-tag">
           <q-badge class="login-badge" color="dark">아이디</q-badge>
-          <q-input color="dark" outlined v-model="formData.loginId" placeholder=" id" />
+          <q-input color="dark" outlined v-model="formData.username" placeholder=" id" />
         </div>
         <div id="password" class="input-tag">
           <q-badge class="login-badge" color="dark">비밀번호</q-badge>
@@ -58,30 +58,26 @@
 </template>
 
 <script setup>
-import axios from 'axios'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import basicAxios from '@/api/index.js'
 
 const router = useRouter()
 
 const formData = ref({
-  loginId: 'answer221',
-  password: 'qweqwe123!',
+  username: 'moodeary',
+  password: '1234',
   name: '황병수',
   email: 'moodeary@gmail.com',
   phone: '010-7177-0677',
-  birthDay: '1991-02-27'
+  birthDay: '1991-02-27',
+  role: 'ROLE_ADMIN'
 })
 
 const onSubmit = async () => {
   try {
-    const res = await axios.post('/api/member/signUp', JSON.stringify(formData.value), {
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With'
-      }
-    })
+    const res = await basicAxios.post('/signup', formData.value)
+    console.log(res)
     await router.push('/login')
   } catch (err) {
     console.error(err)

@@ -5,7 +5,7 @@
       <div class="form-box">
         <div id="id" class="input-tag">
           <q-badge class="login-badge" color="dark">아이디</q-badge>
-          <q-input color="dark" outlined v-model="formData.loginId" placeholder=" id" />
+          <q-input color="dark" outlined v-model="formData.username" placeholder=" id" />
         </div>
         <div id="password" class="input-tag">
           <q-badge class="login-badge" color="dark">비밀번호</q-badge>
@@ -26,35 +26,33 @@
 </template>
 
 <script setup>
-import axios from 'axios'
 import { ref } from 'vue'
 import { userStore } from '@/stores/user'
 import { useRouter } from 'vue-router'
+import basicAxios from '@/api/index.js'
 
 const router = useRouter()
-const { user, setUser, getisLoggedIn } = userStore()
+const { setUser } = userStore()
 
 const formData = ref({
-  loginId: '',
+  username: '',
   password: ''
 })
 
 const onSubmit = async () => {
-  console.log(JSON.stringify(formData.value))
+  const loginForm = new FormData()
+  loginForm.append('username', formData.value.username)
+  loginForm.append('password', formData.value.password)
+
   try {
-    const res = await axios.post('/api/member/login', JSON.stringify(formData.value), {
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With'
-      }
-    })
+    const res = await basicAxios.post('/login', loginForm)
+
     await setUser(res.data)
-    if (getisLoggedIn()) {
+
+    if (res.headers.authorization) {
+      console.log(res.headers.authorization)
       console.log('로그인 되었습니다.')
       router.push('/home')
-    } else {
-      console.log('로그인이 되지 않았습니다.')
     }
   } catch (err) {
     console.error(err)
