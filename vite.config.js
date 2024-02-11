@@ -4,6 +4,8 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { quasar, transformAssetUrls } from '@quasar/vite-plugin'
 
+const port = 3000
+
 export default defineConfig({
   plugins: [
     vue({
@@ -20,14 +22,12 @@ export default defineConfig({
     }
   },
   server: {
-    port: 3000,
+    port,
     proxy: {
       '/api': {
         target: 'http://localhost:8080',
         changeOrigin: true,
-        pathRewrite: {
-          '^/api': ''
-        }
+        pathRewrite: { '^/api': '' }
       }
     }
   }
