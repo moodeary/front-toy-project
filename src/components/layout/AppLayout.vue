@@ -37,17 +37,16 @@
     </q-scroll-area>
   </q-drawer>
   <q-page-container style="width: 95vw; margin: 0 20px 20px">
-    <ToolbarLayoutVue />
+    <TopLayout />
     <RouterView />
   </q-page-container>
 </template>
 
 <script setup>
-import axios from 'axios'
-import { onMounted, ref, computed } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter, RouterView } from 'vue-router'
 import sideList from '@/assets/sideList'
-import ToolbarLayoutVue from '@/components/layout/toolbarLayout.vue'
+import TopLayout from '@/components/layout/TopLayout.vue'
 
 const router = useRouter()
 const miniState = ref(true)
