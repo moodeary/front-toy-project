@@ -77,7 +77,8 @@ router.beforeEach((to, from, next) => {
   // ============================================
   // console.log('--TO', to)
   // console.log('login_user : ', Cookies.get('login_user'))
-  // console.log('token : ', Cookies.get('token'))
+  // console.log('access_token : ', Cookies.get('access_token'))
+  // console.log('refresh_token : ', Cookies.get('refresh_token'))
 
   if (!to.matched.some((record) => record.meta.unauthorized)) {
     return next()

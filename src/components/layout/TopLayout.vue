@@ -14,7 +14,7 @@
             </q-item>
             <q-separator />
             <q-item clickable>
-              <q-item-section>회원 탈퇴</q-item-section>
+              <q-item-section @click="byebye">회원 탈퇴</q-item-section>
             </q-item>
           </q-list>
         </q-menu>
@@ -54,6 +54,14 @@ const logoutBtn = () => {
 const checkuserBtn = async () => {
   try {
     await basicAxios.get('/admin')
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+const byebye = async () => {
+  try {
+    await basicAxios.get('/test')
   } catch (err) {
     console.error(err)
   }

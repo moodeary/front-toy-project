@@ -6,10 +6,12 @@ const basicAxios = axios.create({
 })
 
 basicAxios.interceptors.request.use(async function (config) {
-  if (Cookies.get('token')) {
-    config.headers['Authorization'] = Cookies.get('token')
+  if (Cookies.get('access_token')) {
+    config.headers['Authorization'] = Cookies.get('access_token')
+    config.headers['refresh_token'] = Cookies.get('refresh_token')
   } else {
     delete config.headers['Authorization']
+    delete config.headers['refresh_token']
   }
 
   return config

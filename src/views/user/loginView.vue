@@ -17,6 +17,20 @@
             placeholder=" password"
           />
         </div>
+        <button
+          id="maleBtn"
+          @click="selectGender('male')"
+          :style="{ backgroundColor: selectedGender === 'male' ? 'red' : '' }"
+        >
+          남자
+        </button>
+        <button
+          id="femaleBtn"
+          @click="selectGender('female')"
+          :style="{ backgroundColor: selectedGender === 'female' ? 'red' : '' }"
+        >
+          여자
+        </button>
       </div>
       <div class="submit-btn">
         <q-btn label="로그인" type="submit" color="dark" />
@@ -35,7 +49,11 @@ const { setUser } = userStore()
 import basicAxios from '@/api/index.js'
 
 const router = useRouter()
-
+const selectedGender = ref()
+const selectGender = (gender) => {
+  // 선택된 성별 업데이트
+  selectedGender.value = gender
+}
 const formData = ref({
   username: '',
   password: ''
@@ -49,12 +67,14 @@ const onSubmit = async () => {
   try {
     const res = await basicAxios.post('/login', loginForm)
 
-    if (res.headers.authorization) {
-      const token = res.headers.authorization
-      const parts = token.split('.')
+    const refresh_token = res.headers.refresh_token
+    const access_token = res.headers.access_token
+
+    if (access_token) {
+      const parts = access_token.split('.')
       const payload = JSON.parse(atob(parts[1]))
 
-      sessionLogin(payload, token)
+      sessionLogin(payload, refresh_token, access_token)
       setUser(payload)
 
       router.push('/home')
